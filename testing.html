@@ -1,0 +1,370 @@
+<html lang="ru">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="assets/css/testing.css">
+    <title>Kaktus Testing</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/images/logo.png">
+    
+    <script src="https://unpkg.com/read-excel-file@4.x/bundle/read-excel-file.min.js"></script>
+</head>
+       
+<body>
+    
+    <header class="header">
+        <div class="container">
+            <div class="header_inner">
+                <div class="header_logo"><a href = "index.html"> <img src="assets/images/logo.png" width = 7% height = 7%>Kaktus Education</a></div>
+                
+                <nav class="nav">
+                    <a class="nav_link" href="index.html#sec">About</a>
+                    <a class="nav_link" href="about.html">Help</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    
+    
+    <div class="intro">
+        <div class="container">
+            <div class="intro_inner">
+                
+                
+                <div class="rect" id="rectangle">
+                    <div id="inner_rec">
+                    
+                        <h2 class="intro_step1">Выберите файл для тестирования</h2>           
+                        <input class="file_button" type="file" id="input_file" accept=".xlsx, .json"/>  
+                        <button class="start_button" onclick="start()" id="begin">Начать</button>  
+                    
+                        
+                    </div>
+                    <h2 class="intro_step2" id = "hardlevel" hidden>Выберите уровень сложности</h2>  
+              
+                        <p class="easy_test"><input id="easyratio" type="radio" name="menu" onclick="test_on()"  hidden><span id="easy" hidden>Легко</span></p>
+                    
+                        <p class="hard_test"><input id="hardratio" type="radio" name="menu" onclick="test_off()" hidden><span id="hard" hidden>Тяжело</span></p>
+                    
+                    
+                    
+
+                    <p class="question" id="question" ></p>
+                    <input class="text_answer" type="text" id="answer" hidden>
+                    
+                    
+                    <div class="testirovanie">
+                        <div class="all_radios">
+                            <p class="radio1"><input id="radio1" type="radio" name="test" value="1" hidden><span id="answer1"></span></p>
+                            <p class="radio2"><input id="radio2" type="radio" name="test" value="2" hidden><span id="answer2"></span></p>
+                            <p class="radio3"><input id="radio3" type="radio" name="test" value="3" hidden><span id="answer3"></span></p>
+                            <p class="radio4"><input id="radio4" type="radio" name="test" value="4" hidden><span id="answer4"></span></p>
+                        </div>
+
+                        <div class="manage_buttons">
+                            <button class="check_button" onclick="check(curr_tasks)" id="check" hidden>Далее</button>
+                            <button class="end_button" onclick="end()" id="end" hidden>Закончить</button>
+                        </div>
+                    </div>
+
+                    <p id="res"></p>
+                    
+                
+                </div>
+             </div>
+        </div>
+    </div>  
+    
+    
+
+    <div class="intro_bottom">
+        <div class="container">
+            <div class="button_inner">
+                <a class="button" href="index.html">На главную</a>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script>
+        let counter = 0;                                    // счетчик для цикла
+        let tasks = [];                                     // массив всех соответсвий
+        let curr_tasks = [];                                // массив текущих соответсвий
+        var input = document.getElementById('input_file');  // файл excel
+        let test = true;                                    // выбор ручной ввод-тест
+        let starting = false;                                  // нажатие кнопки "Начать"
+        
+        document.getElementById('easyratio').checked = true;
+        
+        class bin_match                                     // класс бинарного соответсвия
+        {
+            constructor(question, answer)
+            {
+                this.question = question;   // вопрос
+                this.answer = answer;       // ответ
+                this.luck = 0;              // очки успеха
+            }
+        }
+        
+        // скрытие всех элементов по нажатию кнопки выбора файла
+        document.getElementById('input_file').onclick = function()  
+        {
+            document.getElementById('begin').style.visibility = "hidden";
+            
+            document.getElementById('easyratio').hidden = true;
+            document.getElementById('hardratio').hidden = true;
+            document.getElementById('easy').hidden = true;
+            document.getElementById('hard').hidden = true;
+            document.getElementById('hardlevel').hidden = true;
+            
+            document.getElementById('check').hidden = true;
+            document.getElementById('end').hidden = true;
+            
+            startig = false; 
+            
+            if (input.value != "")
+                if (confirm("Хотите сохранить изменения?"))
+                    end();
+        }
+        
+        
+        function mix(array)                                 // перемешивание массива
+        {
+            array.sort(()=>Math.random()-0.5); 
+        } 
+
+        function mean(array)                                // подсчет среднего значения в массиве
+        {  
+            let mean_luck = 0;
+            for (let item of array)
+                {
+                    mean_luck += item.luck;
+                }
+            return mean_luck / array.length;   
+        }
+        
+        function select_answers(array)
+        {
+            // выбор случайных ответов, включая правильный
+            test = [];
+            test.push(array[counter]);
+            let t = array.slice(0);
+            t.splice(counter, 1);
+            mix(t);
+            for (let i = 0; i < 3; i++)
+                test.push(t[i]);
+            mix(test);
+
+            document.getElementById('answer1').innerHTML = test[0].answer;
+            document.getElementById('radio1').value = test[0].answer;
+
+            document.getElementById('answer2').innerHTML = test[1].answer;
+            document.getElementById('radio2').value = test[1].answer;
+
+            document.getElementById('answer3').innerHTML = test[2].answer;
+            document.getElementById('radio3').value = test[2].answer;
+
+            document.getElementById('answer4').innerHTML = test[3].answer;
+            document.getElementById('radio4').value = test[3].answer;
+        }
+
+        function interview(array)                           // опрос пользователя - вывод вопроса
+        {
+            document.getElementById('question').innerHTML = array[counter].question;
+            
+            if (test)
+                select_answers(array);
+        }
+        
+        function check(array)                               // проверка правильности ответа
+        {
+            // получение ответа
+            if (test)
+            {
+                answer = document.querySelector('input[name="test"]:checked').value;
+                document.querySelector('input[name="test"]:checked').checked = false;
+            }
+            else 
+            {
+                answer = document.getElementById('answer').value;
+                document.getElementById('answer').value = '';
+            }
+
+            // проверка ответа
+            if (answer == array[counter].answer)
+            {
+                array[counter].luck++;
+                alert('Верно!');
+                //document.getElementById("intro_step2").innerHTML = "Верно!"
+            }
+            else
+            {
+                array[counter].luck--;
+                alert('Всмысле ' + answer + '? Вообще-то ' + array[counter].answer)
+                //document.getElementById("intro_step2").innerHTML = 'Всмысле ' + answer + '? Вообще-то ' + array[counter].answer
+            }
+
+            counter++;
+            if (counter + 1> array.length)
+                menu()
+            interview(curr_tasks);
+        }
+
+        function loading(array, question, answer)           // загрузка данных в массив
+        {
+            array.push(new bin_match(question, answer));
+        }
+     
+        input.addEventListener('change', function()         // чтение загруженного файла
+        {
+            tasks = [];
+            
+            // расширение файла
+            let ext = input.files[0].name.split(".").pop();
+            
+            if (ext == 'xlsx') // excel
+            {
+                readXlsxFile(input.files[0]).then(function(data)
+                {
+                    for (let row of data)
+                    {
+                        loading(tasks, row[0], row[1])
+                    }
+                })
+            }
+            
+            if (ext == 'json') // json
+            {
+                var file_to_read = input.files[0];
+                var fileread = new FileReader();
+                fileread.onload = function(e)
+                {
+                    var content = e.target.result;
+                    tasks = JSON.parse(content);
+                };
+    
+                fileread.readAsText(file_to_read);     
+            }
+            
+            document.getElementById('begin').style.visibility = "visible";
+            document.getElementById('easy').hidden = false;
+            document.getElementById('hard').hidden = false;
+            document.getElementById('easyratio').hidden = false;
+            document.getElementById('hardratio').hidden = false;
+            document.getElementById('hardlevel').hidden = false;
+            counter = 0;
+        });
+
+        function selection(array)                           // отбор в текущий массив
+        {
+            return array.filter(item => item.luck <= mean(array))  
+        }
+            
+        function start()                                    // начало работы
+        {
+            starting = true;
+            
+            document.getElementById('inner_rec').hidden = true;
+            document.getElementById('begin').style.visibility = "hidden";
+            document.getElementById('question').hidden = false;
+            document.getElementById('check').hidden = false;
+            document.getElementById('end').hidden = false;
+            document.getElementById('hardratio').hidden = true;
+            document.getElementById('easyratio').hidden = true;
+            document.getElementById('hardlevel').hidden = true;
+            document.getElementById('easy').hidden = true;
+            document.getElementById('hard').hidden = true;
+            
+            if (test)
+            {  
+                document.getElementById('radio1').hidden = false;
+                document.getElementById('answer1').hidden = false;
+
+                document.getElementById('radio2').hidden = false;
+                document.getElementById('answer2').hidden = false;
+
+                document.getElementById('radio3').hidden = false;
+                document.getElementById('answer3').hidden = false;
+
+                document.getElementById('radio4').hidden = false;
+                document.getElementById('answer4').hidden = false;
+            }
+            else document.getElementById('answer').hidden = false;
+            
+            curr_tasks = selection(tasks);  // отбираем
+            mix(curr_tasks);                // перемешиваем
+            interview(curr_tasks);          // спрашиваем  
+        }
+        
+        function test_on()
+        {
+            test = true;
+            
+            if(starting)
+            {
+                document.getElementById('answer').hidden = true;
+                document.getElementById('answer1').hidden = false;
+                document.getElementById('answer2').hidden = false;
+                document.getElementById('answer3').hidden = false;
+                document.getElementById('answer4').hidden = false;
+
+                document.getElementById('radio1').hidden = false;
+                document.getElementById('radio2').hidden = false;
+                document.getElementById('radio3').hidden = false;
+                document.getElementById('radio4').hidden = false;
+
+                select_answers(curr_tasks);
+            }
+        }
+        
+        function test_off()
+        {
+            test = false;
+            
+            if(starting)
+            {
+                document.getElementById('answer').hidden = false;
+                document.getElementById('answer1').hidden = true;
+                document.getElementById('answer2').hidden = true;
+                document.getElementById('answer3').hidden = true;
+                document.getElementById('answer4').hidden = true;
+
+                document.getElementById('radio1').hidden = true;
+                document.getElementById('radio2').hidden = true;
+                document.getElementById('radio3').hidden = true;
+                document.getElementById('radio4').hidden = true;
+
+                document.getElementById('answer').value = '';
+            }
+        }
+        
+        function menu()
+        {
+            if (confirm("Вы молодец! Хотите продолжить?"))
+            {
+                counter = 0;
+                start();
+            } 
+            else end();
+        }
+        
+        function end()
+        {
+            var blob = new Blob([JSON.stringify(tasks)], {type: "text/javascript"});
+            var link = document.createElement("a");
+            link.setAttribute("href", URL.createObjectURL(blob));
+            
+            let fname = input.files[0].name.split(".");
+            fname.pop();
+            
+            link.setAttribute("download", fname.join() + ".json");
+            link.click();   
+        }
+    </script> 
+    
+</body>    
+    
+</html>
+
+
+
