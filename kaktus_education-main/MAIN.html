@@ -1,0 +1,111 @@
+<?php 
+session_start();
+
+if(!isset($_SESSION["theme"]))
+{
+	$_SESSION["theme"] = "light";
+}
+if(!isset($_SESSION["scale"]))
+{
+	$_SESSION["scale"] = "normal";
+}
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+		<title>Kaktus</title>
+		<meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        
+        <link rel="shortcut icon" type="image/x-icon" href="images/logo.png">
+        
+        
+		<link rel="stylesheet" type="text/css" href="styles/main.css">
+		<link rel="stylesheet" type="text/css" href="styles/<?php echo $_SESSION["theme"]; ?>.css" id="theme-link">
+		<link rel="stylesheet" type="text/css" href="styles/<?php echo $_SESSION["scale"]; ?>.css" id="scale-link">
+	</head>
+    
+    <body>
+        <div class="wrapper">
+            <div class="container">
+            
+                <header class="header">
+                    <div class="header__content">
+                        <div class="header_logo"> 
+                            <a href = "index.html"><img src="images/logo.png" width = 45px height = 45px>Kaktus Education</a>
+                        </div>
+
+                        <nav class="nav">
+                            <a class="nav_link" href="#">About</a>
+                            <a class="nav_link" href="#">Help</a>
+                        </nav>
+
+                    </div>
+                </header>
+
+
+                <main class="main">
+                    <article class="main__content">
+                        <h1>Запомнить важное легко!</h1>
+                        <h2>Алгоритм Kaktus Education позволяет запоминать слова с первого раза. 
+                            Импортируйте базу данных с нужными словами и учитесь в два раза эффективнее!</h2>
+                        
+        
+                        <div class="button" href="testing.html">Начать</div>
+                    </article>
+                </main>
+                
+                
+
+                
+                
+                <section class="section" id="sec">
+                    <div class="section__content">
+                        
+                        <div class="fixed-gutter-grid">
+                          <div class="column">
+                              <h2 class="about_text">Волков Анатолий</h2>
+                                <h3 class="rec_text">Главный Разработчик</h3>
+                                <p class="rec_subtext">Идейный вдохновитель и руководитель команды. Разрабатывает алгоритм бинарной классификации с помощью Java Script. Научный исследователь.</p>
+                                <div class="about_contacts">Email: av20021710@gmail.com</div>
+                          </div>
+                          
+                          <div class="column">
+                              <h2 class="about_text">Быкова Ксения</h2>
+                              <h3 class="rec_text">Должность</h3>
+                               <p class="rec_subtext">Описание</p>
+                               <div class="about_contacts">Email: bykova.ksucha@yandex.ru</div>
+                          </div>
+                            
+                          <div class="column">
+                              <h2 class="about_text">Кызылова Полина</h2>
+                              <h3 class="rec_text">Frontend-Разработчик</h3>
+                               <p class="rec_subtext">Занимается разработкой дизайна и версткой сайта с помощью Figma, HTML и CSS. Научный исследователь.</p>
+                               <div class="about_contacts">Email: kyzylovapa@mail.ru</div>
+                          </div>
+                        </div>
+                        
+                
+                        
+                    </div>
+                </section>  
+                
+                
+                
+                
+            
+            </div>
+        </div>
+        <script type="text/javascript" src="scripts/themes.js"></script>
+		<script type="text/javascript" src="scripts/scale.js"></script>
+    </body>
+    
+</html>
+
+
+
+
+

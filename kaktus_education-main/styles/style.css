@@ -1,0 +1,504 @@
+body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+
+/*Сброс отступов для всех заголовков*/
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+}
+
+a:link {
+  color: #fff; 
+  text-decoration: none;
+}
+a:visited {
+  color: #fff; 
+  text-decoration: none;
+}
+a:hover {
+  color: #fff; 
+  text-decoration: none;
+}
+a:active {
+  color: #fff; 
+  text-decoration: none;
+}
+
+
+
+.wrapper {
+    width: 80%;
+    max-width: 720px;
+}
+
+
+.body, .html
+{
+	font-size: 16px !important;
+}
+
+.nav
+{
+	padding: 15px 25px !important;
+	margin: 2px !important;
+}
+
+.intro
+{
+	width: 80% !important;
+	margin: 0 auto !important;
+}
+
+
+
+
+
+
+/*Контейнер для всего содержимого страницы*/
+.container {
+    width: 100%;
+    max-width: 80vw;
+    margin: 0 auto;
+}
+
+
+/*Стартовая страница*/
+.intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    width: 100%;
+    height: 100vh;
+    
+    background: url("../images/intro.jpg") center no-repeat;
+    -webkit-background-size: cover;
+    background-size: cover;
+}
+
+
+/*Контейнер для заголовка стартовой страницы*/
+.intro_inner {
+    width: 100%;
+    max-width: 1300px;
+    margin: 0 auto;
+}
+
+
+
+
+/*Заголовок стартовой страницы*/
+.intro_title {
+    color: #fff;
+    font-size: 11vh;
+    font-weight: 500;
+    text-align: left;
+    line-height: 1;
+    
+    margin-bottom: 6vh;
+}
+
+
+/*Подзаголовок стартовой страницы*/
+.intro_subtitle {
+    color: #fff;
+    font-size: 3.5vh;
+    font-weight: 100;
+    text-align: left;
+    text-transform: uppercase;
+    font-family: monospace;
+}
+
+
+
+
+/*Шапка стартовой страницы*/
+.header {
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+    padding-top: 3vh;
+}
+
+
+/*Контейнер для логотипа и навигации*/
+.header_inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+/*Логотип*/
+.header_logo {
+    font-size: 3.5vh;
+    color: #fff;
+    font-weight: 100;
+}
+
+
+/*Навигация*/
+.nav {
+    font-size: 1.8vh;
+    text-transform: uppercase;
+}
+
+
+/*Выделение ссылок навигации*/
+.nav_link {
+    display: inline-block;
+    vertical-align: top;
+    margin: 0 15px;
+    color: #fff;
+    text-decoration: none;
+    transition: color .1s linear;
+    
+    position: relative;
+}
+
+
+/*Черта снизу для навигации*/
+.nav_link:after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    
+    background-color: #ff748c;
+    opacity: 0;
+    position: absolute;
+    
+    top: 100%;
+    left: 0;
+    z-index: 1;
+    
+    transition: opacity .1s linear;
+}
+
+
+/*Смена цвета при клике по навигации*/
+.nav_link:hover {
+    color: #ff748c;
+}
+
+
+/*Черта снизу для навигации*/
+.nav_link:hover:after {
+    opacity: 1;
+}
+
+
+/*Кнопка на главной странице*/
+.button {
+    vertical-align:top;
+    background-color: #101012;
+    
+    /*padding: 13px 90px;
+    padding-top: 1.5vh;
+    padding-left: 2vw;*/
+    padding: 1.5vh 3.8vw;
+    
+    font-size: 2.2vh;
+    font-weight: 600;
+    color: #fff;
+    text-decoration: none;
+    font-family: monospace;
+    
+    border-radius: 10px;
+    border-width: 2px;
+    border-color: transparent;
+    border-style: solid;
+    
+    transition: background .1s linear, color .1s linear;
+}
+
+
+/*Нажатие на кнопку на главной странице*/
+.button:hover {
+    background-color: #ff748c;
+    color: #101012;
+    border-color: #ff748c;
+}
+
+
+/*Нижняя часть главной страницы*/
+.intro_bottom {
+    width: 100%;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+
+/*Контейнер нижней части главной страницы*/
+.button_inner {
+    display: flex;
+    justify-content: center;
+    /*margin-bottom: 80px;*/
+    margin-bottom: 12vh;
+}
+
+
+
+
+
+
+
+/*Вторая страница сайта*/
+.section {
+    height: 100vh;
+    padding: 40px 0;
+    background-color: #101012;
+    color: #101012;
+    
+    width: 100%;
+    max-width: 100vw;
+    margin: 0 auto;
+}
+
+
+/*Шапка второй страницы*/
+.section_header {
+    width: 100%;
+    margin-bottom: 1vh;
+    
+    text-align: center;
+}
+
+
+/*Заголовок второй страницы*/
+.section_title {
+    color: #13CE84;
+    font-size: 3.5vh;
+    
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    font-family: monospace;
+}
+
+
+
+
+/*Вторая страница участники команды*/
+.about_first {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.about_second {
+    display: flex;
+    justify-content: space-between;
+}
+
+
+.about_item {
+    width: 21vw;
+    transition: transform .2s linear;
+}
+
+
+.about_text {
+    /*margin: 10px auto 10px;*/
+    margin-bottom: 1vh;
+    
+    color: #fff;
+    font-size: 3vh;
+    font-weight: 200;
+    text-align: center;
+    font-family: monospace;
+}
+
+
+#rectangle {
+    /*margin: 0px auto 20px;*/
+    margin-bottom: 2.5vh;
+    
+    width: 21vw;
+    height: 32vh;
+    
+    background-color: #fff;
+    border-style: solid;
+    border-color: #fff;
+    border-radius: 10px;
+}
+
+
+.rec {
+    transition: transform .2s linear;
+}
+
+
+.rec_text {
+    margin-top: 1vh;
+    margin-left: 1vw;
+    
+    color: #ff748c;
+    
+    font-size: 2.5vh;
+    font-weight: 300;
+    text-align: left;
+    font-family: monospace;
+    
+    transition: opacity .2s linear;
+}
+
+
+.rec_subtext {
+    margin-top: 1vh;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    
+    font-size: 2vh;
+    transition: opacity .2s linear;
+}
+
+
+.about_rec {
+    border-radius: 10px;
+    /*background-color: #101012;*/
+    background-color: #ff748c;
+}
+
+
+.rec:hover {
+    transform: translate3d(-10px, -10px, 0);
+    position: relative;    
+}
+
+
+#rectangle:hover {
+    background-color: #13CE84;
+    border-color: #13CE84;
+}
+
+#rectangle:hover .rec_text {
+    opacity: 0;
+}
+
+
+#rectangle:hover .rec_subtext {
+    opacity: 0;
+}
+
+
+.about_contacts {
+    width: 100%;
+    
+    color: #101012;
+    font-size: 2vh;
+    font-weight: 500;
+    text-align: center;
+    font-family: monospace;
+    text-transform: uppercase;
+    
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 2;
+    transform: translate3d(0, -50px, 0);
+    
+    transition: opacity .2s linear;
+}
+
+
+
+.rec:hover .about_contacts {
+    opacity: 1;
+}
+
+
+
+
+
+.second_bottom {
+    background-color: #101012;
+    width: auto;
+    height: auto;
+}
+
+.second_container {
+    background-color: #101012;
+}
+
+/*Кнопка для переходя на главную*/
+.second_button {
+    vertical-align:top;
+    background-color: #101012;
+    display: flex;
+    
+    padding: 0 0;
+    font-size: 1.8vh;
+    font-weight: 500;
+    color: #fff;
+    text-decoration: none;
+    font-family: monospace;
+    text-transform: uppercase;
+    
+    border-color: transparent;
+    border-style: none;
+
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
+    
+    text-decoration: none;
+    transition: color .1s linear;
+}
+
+
+/*Нажатие на кнопку на главную*/
+.second_button:hover {
+    color: #13EC84;
+}
+
+
+.second_button:hover:after {
+    opacity: 1;
+}
+
+
+
+/*Нижняя часть главной страницы*/
+.second_intro_bottom {
+    width: 100%;
+    
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+}
+
+
+/*Контейнер нижней части главной страницы*/
+.second_button_inner {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3vh;
+    flex-direction: column;
+    
+    width: auto;
+    height: auto;
+}
+
+
+
+
+
+
