@@ -13,6 +13,6 @@ During testing, users can adjust the difficulty level and end the test whenever 
 
 
 # Project presentation
-<p>You can find more information about the case study for the project at the following link:<br />
+<p>You can find more information about the project at the following link:<br />
   https://www.behance.net/gallery/175971667/EdTech-platform-design
 </p>
