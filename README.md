@@ -12,7 +12,9 @@ During testing, users can adjust the difficulty level and end the test whenever 
 </ul>
 
 
+<a href="https://polina-kyzylova.github.io/kaktus_education/" target="_blank" rel="noopener noreferrer">View the Kaktus Education website</a>
+
 # Project presentation
-<p>You can find more information about the project at the following link:<br />
-  https://www.behance.net/gallery/175971667/EdTech-platform-design
+<p>You can find more information about the Kaktus Education project on Behance:<br />
+  <a href="https://www.behance.net/gallery/175971667/EdTech-platform-design" target="_blank" rel="noopener noreferrer">View the Kaktus Education project presentation</a>
 </p>
